@@ -9,7 +9,7 @@ import 'package:weather_app/utils/colors/app_colors.dart';
 import 'package:weather_app/utils/extensions/my_extensions.dart';
 import 'package:weather_app/utils/size/size_utils.dart';
 import 'package:weather_app/utils/styles/app_text_style.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import '../utils/images/app_images.dart';
 
 class SimpleWeatherScreen extends StatefulWidget {
@@ -22,7 +22,7 @@ class SimpleWeatherScreen extends StatefulWidget {
 class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
   final WeatherRepository weatherRepository = WeatherRepository();
   final TextEditingController controller = TextEditingController();
-  late final String city;
+  String city="Tashkent";
 
 
   @override
@@ -37,7 +37,7 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
           child: Column(
             children: [
               FutureBuilder<MyResponse>(
-                  future: weatherRepository.getSimpleWeatherInfo("Tashkent"),
+                  future: weatherRepository.getSimpleWeatherInfo(city),
                   builder: (context, snapshot) {
                     if (snapshot.hasError) {
                       return Center(
@@ -99,8 +99,9 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                                 20.getH(),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 25.w),
-                                  child: TextField(
-                                    onSubmitted: (value){city=value; print(city);},
+                                  child:
+                                  TextField(
+                                    onChanged: (value){city=value; print(city);},
                                     controller: controller,
                                     decoration: InputDecoration(
                                         floatingLabelBehavior:
@@ -204,7 +205,7 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                                     children: [
                                       Column(
                                         children: [
-                                          SvgPicture.asset(AppImages.wind),
+                                          Image.asset(AppImages.windTwo,height: 25.h, ),
                                           Text(
                                             "${weatherMainModel.windInMain.speed.round()} km/h",
                                             style: AppTextStyle.interSemiBold
@@ -222,7 +223,7 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                                       ),
                                       Column(
                                         children: [
-                                          SvgPicture.asset(AppImages.humidity),
+                                          Image.asset(AppImages.humidityTwo, height: 25.h,),
                                           Text(
                                             "${weatherMainModel.mainInMain.humidity} %",
                                             style: AppTextStyle.interSemiBold
@@ -240,7 +241,7 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                                       ),
                                       Column(
                                         children: [
-                                          SvgPicture.asset(AppImages.humidity),
+                                          Icon(Icons.visibility, color: AppColors.white,),
                                           Text(
                                             "${weatherMainModel.visibility}",
                                             style: AppTextStyle.interSemiBold
@@ -315,11 +316,26 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                       OneCallData oneCallData =
                           (snapshot.data as MyResponse).data as OneCallData;
                       return
-                        SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            ...List.generate(
+                        SizedBox(
+                          height: 130.h,
+                          width: double.infinity,
+                          child: CarouselSlider(
+                            options: CarouselOptions(
+                              viewportFraction: 0.2,
+                              initialPage: 0,
+                              enableInfiniteScroll: true,
+                              reverse: false,
+                              enlargeCenterPage: true,
+                              aspectRatio: 3,
+                              // autoPlay: true,
+                              autoPlayInterval: const Duration(seconds: 2),
+                              autoPlayAnimationDuration: const Duration(seconds: 1),
+                              autoPlayCurve: Curves.linear,
+                              enlargeFactor: 0.2,
+                              onPageChanged: (v, d) {},
+                              scrollDirection: Axis.horizontal,
+                            ),
+                            items: List.generate(
                                 oneCallData.hourly.length,
                                 (index){
                             var hourData = oneCallData.hourly[index];
@@ -333,7 +349,14 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                                         width: 75.w,
                                         decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(30.w),
-                                            color: AppColors.c_11ACFF),
+                                            gradient: LinearGradient(
+                                                begin: Alignment.bottomCenter,
+                                                end: Alignment.topCenter,
+                                                colors: [
+                                                  AppColors.c_0648F1,
+                                                  AppColors.c_11ACFF,
+                                                  AppColors.c_00D1FF
+                                                ])),
                                         child: Column(children: [
                                           Text(hourData.dt.getParsedHour(), style: AppTextStyle.interSemiBold.copyWith(fontSize: 16.w),),
                                           Image.network(
@@ -347,10 +370,9 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
 
                                         ),
                                       ),
-                                    );})
-                          ],
-                        ),
-                      );
+                                    );}),
+                          ),
+                        );
                     }
                     return const Center(
                       child: CircularProgressIndicator(),

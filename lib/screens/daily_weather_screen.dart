@@ -5,7 +5,7 @@ import 'package:weather_app/utils/colors/app_colors.dart';
 import 'package:weather_app/utils/extensions/my_extensions.dart';
 import 'package:weather_app/utils/images/app_images.dart';
 import 'package:weather_app/utils/size/size_utils.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:weather_app/utils/styles/app_text_style.dart';
 import '../data/models/my_response.dart';
 import '../data/repository/weather_repository.dart';
@@ -140,7 +140,7 @@ class _DailyWeatherScreenState extends State<DailyWeatherScreen> {
                                             children: [
                                               Column(
                                                 children: [
-                                                  SvgPicture.asset(AppImages.wind),
+                                                  Image.asset(AppImages.windTwo, height: 25.h,),
                                                   Text(
                                                     "${oneCallData.daily[0].windSpeed.round()} km/h",
                                                     style: AppTextStyle.interSemiBold
@@ -158,7 +158,7 @@ class _DailyWeatherScreenState extends State<DailyWeatherScreen> {
                                               ),
                                               Column(
                                                 children: [
-                                                  SvgPicture.asset(AppImages.humidity),
+                                                  Image.asset(AppImages.humidityTwo, height: 25.h,),
                                                   Text(
                                                     "${oneCallData.daily[0].humidity.round()} %",
                                                     style: AppTextStyle.interSemiBold
@@ -176,7 +176,7 @@ class _DailyWeatherScreenState extends State<DailyWeatherScreen> {
                                               ),
                                               Column(
                                                 children: [
-                                                  SvgPicture.asset(AppImages.humidity),
+                                                  Icon(Icons.cloud, color: AppColors.white,),
                                                   Text(
                                                     "${oneCallData.daily[0].clouds}",
                                                     style: AppTextStyle.interSemiBold
