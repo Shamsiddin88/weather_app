@@ -99,9 +99,8 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                                 20.getH(),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 25.w),
-                                  child:
-                                  TextField(
-                                    onChanged: (value){city=value; print(city);},
+                                  child: TextField(
+                                    onChanged: (value){city=value; },
                                     controller: controller,
                                     decoration: InputDecoration(
                                         floatingLabelBehavior:
@@ -316,26 +315,11 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                       OneCallData oneCallData =
                           (snapshot.data as MyResponse).data as OneCallData;
                       return
-                        SizedBox(
-                          height: 130.h,
-                          width: double.infinity,
-                          child: CarouselSlider(
-                            options: CarouselOptions(
-                              viewportFraction: 0.2,
-                              initialPage: 0,
-                              enableInfiniteScroll: true,
-                              reverse: false,
-                              enlargeCenterPage: true,
-                              aspectRatio: 3,
-                              // autoPlay: true,
-                              autoPlayInterval: const Duration(seconds: 2),
-                              autoPlayAnimationDuration: const Duration(seconds: 1),
-                              autoPlayCurve: Curves.linear,
-                              enlargeFactor: 0.2,
-                              onPageChanged: (v, d) {},
-                              scrollDirection: Axis.horizontal,
-                            ),
-                            items: List.generate(
+                        SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            ...List.generate(
                                 oneCallData.hourly.length,
                                 (index){
                             var hourData = oneCallData.hourly[index];
@@ -370,9 +354,10 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
 
                                         ),
                                       ),
-                                    );}),
-                          ),
-                        );
+                                    );})
+                          ],
+                        ),
+                      );
                     }
                     return const Center(
                       child: CircularProgressIndicator(),
