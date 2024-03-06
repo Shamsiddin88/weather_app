@@ -6,25 +6,25 @@ import '../colors/app_colors.dart';
 class AppTextStyle {
   //Sans
   static TextStyle interThin = TextStyle(
-    fontFamily: "Sans",
+    fontFamily: "Inter",
     fontWeight: FontWeight.w200,
     fontSize: 14.w,
     color: AppColors.white,
   );
   static TextStyle interLight = TextStyle(
-    fontFamily: "Sans",
+    fontFamily: "Inter",
     fontWeight: FontWeight.w300,
     fontSize: 14.w,
     color: AppColors.white,
   );
   static TextStyle interRegular = TextStyle(
-    fontFamily: "Sans",
+    fontFamily: "Inter",
     fontWeight: FontWeight.w400,
     fontSize: 16.w,
     color: AppColors.white,
   );
   static TextStyle interMedium = TextStyle(
-    fontFamily: "Sans",
+    fontFamily: "Inter",
     fontWeight: FontWeight.w500,
     fontSize: 16.w,
     color: AppColors.white,
@@ -32,7 +32,7 @@ class AppTextStyle {
   );
 
   static TextStyle interSemiBold = TextStyle(
-    fontFamily: "Sans",
+    fontFamily: "Inter",
     fontWeight: FontWeight.w600,
     fontSize: 16.w,
     color: AppColors.white,
@@ -40,7 +40,7 @@ class AppTextStyle {
   );
 
   static TextStyle interBold = TextStyle(
-    fontFamily: "Sans",
+    fontFamily: "Inter",
     fontWeight: FontWeight.w700,
     fontSize: 16.w,
     color: AppColors.white,
@@ -48,7 +48,7 @@ class AppTextStyle {
   );
 
   static TextStyle interBlack = TextStyle(
-    fontFamily: "Sans",
+    fontFamily: "Inter",
     fontWeight: FontWeight.w800,
     fontSize: 16.w,
     color: AppColors.white,

@@ -11,8 +11,9 @@ import '../data/models/my_response.dart';
 import '../data/repository/weather_repository.dart';
 
 class DailyWeatherScreen extends StatefulWidget {
-  const DailyWeatherScreen({super.key});
+  const DailyWeatherScreen({super.key, required this.isDark});
 
+  final bool isDark;
   @override
   State<DailyWeatherScreen> createState() => _DailyWeatherScreenState();
 }
@@ -20,12 +21,12 @@ class DailyWeatherScreen extends StatefulWidget {
 class _DailyWeatherScreenState extends State<DailyWeatherScreen> {
   final WeatherRepository weatherRepository = WeatherRepository();
 
+
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion(
       value: SystemUiOverlayStyle(statusBarColor: AppColors.transparent),
       child: Scaffold(
-        backgroundColor: AppColors.c_0C0926,
         body: Column(
           children: [
             FutureBuilder<MyResponse>(
@@ -45,12 +46,12 @@ class _DailyWeatherScreenState extends State<DailyWeatherScreen> {
                           decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
-                                    color: AppColors.c_0648F1.withOpacity(0.5),
+                                    color: widget.isDark? AppColors.c_0648F1.withOpacity(0.5):AppColors.c_e76f51.withOpacity(0.5),
                                     offset: Offset(0, 20),
                                     blurRadius: 10,
                                     spreadRadius: -2),
                                 BoxShadow(
-                                    color: AppColors.c_0648F1.withOpacity(0.5),
+                                    color: widget.isDark? AppColors.c_0648F1.withOpacity(0.5):AppColors.c_e76f51.withOpacity(0.5),
                                     offset: Offset(0, 25),
                                     blurRadius: 3,
                                     spreadRadius: -15),
@@ -62,21 +63,26 @@ class _DailyWeatherScreenState extends State<DailyWeatherScreen> {
                               gradient: LinearGradient(
                                   begin: Alignment.bottomCenter,
                                   end: Alignment.topCenter,
-                                  colors: [
+                                  colors: widget.isDark? [
                                     AppColors.c_0648F1,
                                     AppColors.c_11ACFF,
                                     AppColors.c_00D1FF
+                                  ]:[
+                                    AppColors.c_e76f51,
+                                    AppColors.c_FAFD74,
                                   ])),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               25.getH(),
-                              IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back, color: AppColors.white,)),
+                              IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back,
+                                color: Theme.of(context).primaryColor,)),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                Icon(Icons.calendar_month, color: AppColors.white,),
-                                Text("7 days", style: AppTextStyle.interBold.copyWith(fontSize: 22.w),)
+                                Icon(Icons.calendar_month,
+                                  color: Theme.of(context).primaryColor,),
+                                Text("7 days", style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w600),)
                               ],),
                               Container(
                                 width: double.infinity,
@@ -86,7 +92,7 @@ class _DailyWeatherScreenState extends State<DailyWeatherScreen> {
                                     Positioned(
                                         top:0,
                                         left: 145.w,
-                                        child: Text("Tomorrow", style: AppTextStyle.interBold.copyWith(fontSize: 18.w),)),
+                                        child: Text("Tomorrow", style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 18.w),)),
                                     Positioned(
                                       left: 40.w,
                                       top: 30.h,
@@ -96,8 +102,8 @@ class _DailyWeatherScreenState extends State<DailyWeatherScreen> {
                                           RichText(
                                             text: TextSpan(
                                               children: <TextSpan>[
-                                                TextSpan(text: oneCallData.daily[0].dailyTemp.max.round().toString(), style: AppTextStyle.interMedium.copyWith(fontSize: 60.w)),
-                                                TextSpan(text: "/${oneCallData.daily[0].dailyTemp.min.round().toString()}", style: AppTextStyle.interMedium.copyWith(fontSize: 40.w))
+                                                TextSpan(text: oneCallData.daily[0].dailyTemp.max.round().toString(), style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 60.w)),
+                                                TextSpan(text: "/${oneCallData.daily[0].dailyTemp.min.round().toString()}", style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 40.w))
                                               ],
                                             ),
                                           )
@@ -110,14 +116,13 @@ class _DailyWeatherScreenState extends State<DailyWeatherScreen> {
                                       right: 150.w,
                                       child: Text(
                                         "o",
-                                        style: AppTextStyle.interMedium
-                                            .copyWith(fontSize: 20.h),
+                                        style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 20.h),
                                       ),
                                     ),
                                     Positioned(
                                       left: 135.w,
                                       top: 120.h,
-                                      child: Text(oneCallData.daily[0].weather[0].main, style: AppTextStyle.interBold.copyWith(fontSize: 18.w),)
+                                      child: Text(oneCallData.daily[0].weather[0].main, style:Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 18.w),)
 
 
                                     ),
@@ -129,7 +134,7 @@ class _DailyWeatherScreenState extends State<DailyWeatherScreen> {
                                         Divider(
                                           thickness: 2.h,
                                           endIndent: 30.w,
-                                          color: AppColors.white,
+                                          color: Theme.of(context).primaryColor,
                                           indent: 30.w,
                                         ),
                                         Padding(
@@ -140,55 +145,49 @@ class _DailyWeatherScreenState extends State<DailyWeatherScreen> {
                                             children: [
                                               Column(
                                                 children: [
-                                                  Image.asset(AppImages.windTwo, height: 25.h,),
+                                                  Image.asset(AppImages.windTwo, height: 25.h,
+                                                    color: Theme.of(context).primaryColor,),
                                                   Text(
                                                     "${oneCallData.daily[0].windSpeed.round()} km/h",
-                                                    style: AppTextStyle.interSemiBold
-                                                        .copyWith(fontSize: 12.w),
+                                                    style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 12.w),
                                                   ),
                                                   Text(
                                                     "Wind",
-                                                    style: AppTextStyle.interSemiBold
-                                                        .copyWith(
+                                                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                                         fontSize: 12.w,
-                                                        color: AppColors.white
-                                                            .withOpacity(0.7)),
+                                                        color: Theme.of(context).primaryColor.withOpacity(0.7)),
                                                   )
                                                 ],
                                               ),
                                               Column(
                                                 children: [
-                                                  Image.asset(AppImages.humidityTwo, height: 25.h,),
+                                                  Image.asset(AppImages.humidityTwo, height: 25.h,
+                                                    color: Theme.of(context).primaryColor,),
                                                   Text(
                                                     "${oneCallData.daily[0].humidity.round()} %",
-                                                    style: AppTextStyle.interSemiBold
-                                                        .copyWith(fontSize: 12.w),
+                                                    style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 12.w),
                                                   ),
                                                   Text(
                                                     "Humidity",
-                                                    style: AppTextStyle.interSemiBold
-                                                        .copyWith(
+                                                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                                         fontSize: 12.w,
-                                                        color: AppColors.white
-                                                            .withOpacity(0.7)),
+                                                        color: Theme.of(context).primaryColor.withOpacity(0.7)),
                                                   )
                                                 ],
                                               ),
                                               Column(
                                                 children: [
-                                                  Icon(Icons.cloud, color: AppColors.white,),
+                                                  Icon(Icons.cloud,
+                                                    color: Theme.of(context).primaryColor,),
                                                   Text(
                                                     "${oneCallData.daily[0].clouds}",
-                                                    style: AppTextStyle.interSemiBold
-                                                        .copyWith(fontSize: 12.w),
+                                                    style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 12.w),
                                                   ),
                                                   Text(
                                                     "Clouds",
-                                                    style: AppTextStyle.interSemiBold
-                                                        .copyWith(
+                                                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                                         fontSize: 12.w,
-                                                        color: AppColors.white
-                                                            .withOpacity(0.7)),
+                                                        color: Theme.of(context).primaryColor.withOpacity(0.7)),
                                                   )
                                                 ],
                                               ),
@@ -222,17 +221,17 @@ class _DailyWeatherScreenState extends State<DailyWeatherScreen> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(daily.dt.getParsedOnlyDay(), style: AppTextStyle.interSemiBold.copyWith(fontSize: 18.w),),
+                                      Text(daily.dt.getParsedOnlyDay(), style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 18.w),),
                                       Row(
                                         children: [
                                           Image.network(
                                             daily.weather[0].icon.getWeatherIconUrl(),
                                           ),
-                                          Text(oneCallData.daily[index].weather[0].main, style: AppTextStyle.interSemiBold.copyWith(fontSize: 18.w),)
+                                          Text(oneCallData.daily[index].weather[0].main, style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 18.w),)
                                         ],
                                       ),
                                       Text(
-                                        "${daily.dailyTemp.day.round() } C",style: AppTextStyle.interSemiBold.copyWith(fontSize: 24.w),
+                                        "${daily.dailyTemp.day.round() } C",style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 24.w),
                                       ),
                                     ],
                                   ),

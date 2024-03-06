@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:weather_app/data/models/detail/one_call_data.dart';
@@ -22,7 +23,21 @@ class SimpleWeatherScreen extends StatefulWidget {
 class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
   final WeatherRepository weatherRepository = WeatherRepository();
   final TextEditingController controller = TextEditingController();
-  String city="Tashkent";
+  String city="Samarkand";
+
+  bool isDark = false;
+  _init () async {
+    isDark=await AdaptiveTheme.getThemeMode()==AdaptiveThemeMode.light;
+    setState(() {
+
+    });
+  }
+
+  @override
+  void initState() {
+    _init();
+    super.initState();
+  }
 
 
   @override
@@ -32,7 +47,6 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
     return AnnotatedRegion(
       value: SystemUiOverlayStyle(statusBarColor: AppColors.transparent),
       child: Scaffold(
-        backgroundColor: AppColors.c_0C0926,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -45,6 +59,7 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                       );
                     }
                     if (snapshot.hasData) {
+                      print(snapshot);
                       WeatherMainModel weatherMainModel =
                       (snapshot.data as MyResponse).data as WeatherMainModel;
                       return
@@ -56,12 +71,12 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                             decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                      color: AppColors.c_0648F1.withOpacity(0.5),
+                                      color: isDark? AppColors.c_0648F1.withOpacity(0.5):AppColors.c_e76f51.withOpacity(0.5),
                                       offset: Offset(0, 20),
                                       blurRadius: 10,
                                       spreadRadius: -2),
                                   BoxShadow(
-                                      color: AppColors.c_0648F1.withOpacity(0.5),
+                                      color: isDark? AppColors.c_0648F1.withOpacity(0.5):AppColors.c_e76f51.withOpacity(0.5),
                                       offset: Offset(0, 25),
                                       blurRadius: 3,
                                       spreadRadius: -15),
@@ -73,30 +88,45 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                                 gradient: LinearGradient(
                                     begin: Alignment.bottomCenter,
                                     end: Alignment.topCenter,
-                                    colors: [
+                                    colors: isDark? [
                                       AppColors.c_0648F1,
                                       AppColors.c_11ACFF,
                                       AppColors.c_00D1FF
+                                    ]:[
+                                      AppColors.c_e76f51,
+                                      AppColors.c_FAFD74,
                                     ])),
                             child: Column(
                               children: [
-                                30.getH(),
+                                20.getH(),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+
                                   children: [
+                                    Switch(
+                                        value: isDark ,
+                                        onChanged: (v){
+                                      if(v){
+                                        AdaptiveTheme.of(context).setDark();
+                                      }
+                                      else{
+                                        AdaptiveTheme.of(context).setLight();
+
+                                      }
+                                      isDark=v;
+                                    }),
+                                    Spacer(),
                                     Icon(
                                       Icons.location_on,
-                                      color: AppColors.white,
+                                      color: Theme.of(context).primaryColor,
                                     ),
                                     Text(
                                       weatherMainModel.name,
-                                      style: AppTextStyle.interSemiBold
-                                          .copyWith(fontSize: 18.w),
-                                    ),
+                                      style: Theme.of(context).textTheme.titleMedium),
+
                                     30.getW(),
                                   ],
                                 ),
-                                20.getH(),
+                                10.getH(),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 25.w),
                                   child: TextField(
@@ -147,7 +177,7 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                                              setState(() {
 
                                             });
-                                          },child: Text("ok", style: AppTextStyle.interMedium.copyWith(color: AppColors.white),)),
+                                          },child: Text("ok", style: Theme.of(context).textTheme.titleMedium),),
                                     ],
                                   ),
                                 ),
@@ -163,7 +193,7 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                                         (weatherMainModel.mainInMain.temp - 273.15)
                                             .round()
                                             .toString(),
-                                        style: AppTextStyle.interMedium
+                                        style: Theme.of(context).textTheme.displayLarge!
                                             .copyWith(fontSize: 80.h),
                                       ),
                                     ),
@@ -172,7 +202,7 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                                       right: 0,
                                       child: Text(
                                         "o",
-                                        style: AppTextStyle.interMedium
+                                        style: Theme.of(context).textTheme.headlineSmall!
                                             .copyWith(fontSize: 25.h),
                                       ),
                                     )
@@ -180,19 +210,19 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                                 ),
                                 Text(
                                   weatherMainModel.weatherModel[0].main,
-                                  style: AppTextStyle.interMedium.copyWith(
+                                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                                       fontSize: 48.w, color: AppColors.c_FAFD74),
                                 ),
                                 Text(
                                   weatherMainModel.dateTime.getParsedDate(),
-                                  style: AppTextStyle.interMedium
+                                  style: Theme.of(context).textTheme.titleLarge!
                                       .copyWith(fontSize: 20.w),
                                 ),
                                 12.getH(),
                                 Divider(
                                   thickness: 2.h,
                                   endIndent: 30.w,
-                                  color: AppColors.white,
+                                  color: Theme.of(context).primaryColor,
                                   indent: 30.w,
                                 ),
                                 10.getH(),
@@ -204,55 +234,52 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                                     children: [
                                       Column(
                                         children: [
-                                          Image.asset(AppImages.windTwo,height: 25.h, ),
+                                          Image.asset(AppImages.windTwo,height: 25.h,
+                                      color: Theme.of(context).primaryColor, ),
                                           Text(
                                             "${weatherMainModel.windInMain.speed.round()} km/h",
-                                            style: AppTextStyle.interSemiBold
-                                                .copyWith(fontSize: 12.w),
-                                          ),
+                                            style: Theme.of(context).textTheme.labelMedium),
                                           Text(
                                             "Wind",
-                                            style: AppTextStyle.interSemiBold
+                                            style: Theme.of(context).textTheme.labelMedium!
                                                 .copyWith(
                                                     fontSize: 12.w,
-                                                    color: AppColors.white
-                                                        .withOpacity(0.7)),
+
+                                                color: Theme.of(context).primaryColor.withOpacity(0.7)),
                                           )
                                         ],
                                       ),
                                       Column(
                                         children: [
-                                          Image.asset(AppImages.humidityTwo, height: 25.h,),
+                                          Image.asset(AppImages.humidityTwo, height: 25.h,
+                                          color: Theme.of(context).primaryColor,),
                                           Text(
                                             "${weatherMainModel.mainInMain.humidity} %",
-                                            style: AppTextStyle.interSemiBold
-                                                .copyWith(fontSize: 12.w),
+                                            style: Theme.of(context).textTheme.labelMedium,
                                           ),
                                           Text(
                                             "Humidity",
-                                            style: AppTextStyle.interSemiBold
+                                            style: Theme.of(context).textTheme.labelMedium!
                                                 .copyWith(
                                                     fontSize: 12.w,
-                                                    color: AppColors.white
-                                                        .withOpacity(0.7)),
+                                                    color: Theme.of(context).primaryColor.withOpacity(0.7)),
                                           )
                                         ],
                                       ),
                                       Column(
                                         children: [
-                                          Icon(Icons.visibility, color: AppColors.white,),
+                                          Icon(Icons.visibility,
+                                          color: Theme.of(context).primaryColor,),
                                           Text(
                                             "${weatherMainModel.visibility}",
-                                            style: AppTextStyle.interSemiBold
-                                                .copyWith(fontSize: 12.w),
+                                            style: Theme.of(context).textTheme.labelMedium,
                                           ),
                                           Text(
                                             "Visibility",
-                                            style: AppTextStyle.interSemiBold
+                                            style: Theme.of(context).textTheme.labelMedium!
                                                 .copyWith(
                                                     fontSize: 12.w,
-                                                    color: AppColors.white
-                                                        .withOpacity(0.7)),
+                                                    color: Theme.of(context).primaryColor.withOpacity(0.7)),
                                           )
                                         ],
                                       ),
@@ -270,23 +297,22 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                               children: [
                                 Text(
                                   "Hourly",
-                                  style: AppTextStyle.interSemiBold
-                                      .copyWith(fontSize: 22.w),
+                                  style: Theme.of(context).textTheme.titleLarge,
                                 ),
                                 TextButton(
                                     onPressed: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>DailyWeatherScreen()));
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>DailyWeatherScreen(isDark: isDark,)));
                                     },
                                     child: Row(
                                       children: [
                                         Text(
                                           "7 days",
-                                          style: AppTextStyle.interSemiBold
-                                              .copyWith(fontSize: 14.w),
+                                          style: Theme.of(context).textTheme.titleSmall,
                                         ),
                                         Icon(
                                           Icons.arrow_forward_ios_rounded,
-                                          color: AppColors.white,
+
+                                            color: Theme.of(context).primaryColor,
                                         )
                                       ],
                                     )),
@@ -336,19 +362,22 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                                             gradient: LinearGradient(
                                                 begin: Alignment.bottomCenter,
                                                 end: Alignment.topCenter,
-                                                colors: [
+                                                colors: isDark? [
                                                   AppColors.c_0648F1,
                                                   AppColors.c_11ACFF,
                                                   AppColors.c_00D1FF
+                                                ]:[
+                                                  AppColors.c_e76f51,
+                                                  AppColors.c_FAFD74,
                                                 ])),
                                         child: Column(children: [
-                                          Text(hourData.dt.getParsedHour(), style: AppTextStyle.interSemiBold.copyWith(fontSize: 16.w),),
+                                          Text(hourData.dt.getParsedHour(), style: Theme.of(context).textTheme.titleMedium,),
                                           Image.network(
                                             hourData.weather[0].icon
                                                 .getWeatherIconUrl(),height: 45,
                                           ),
                                           Text(
-                                            "${hourData.temp.round()} C", style: AppTextStyle.interSemiBold.copyWith(fontSize: 16.w),
+                                            "${hourData.temp.round()} C", style: Theme.of(context).textTheme.titleMedium,
                                           ),
                                         ],
 
