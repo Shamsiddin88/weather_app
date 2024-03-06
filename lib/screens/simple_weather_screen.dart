@@ -51,7 +51,7 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
           child: Column(
             children: [
               FutureBuilder<MyResponse>(
-                  future: weatherRepository.getSimpleWeatherInfo(city),
+                  future: weatherRepository.getSimpleWeatherInfo(city) ?? weatherRepository.getSimpleWeatherInfo("Samarkand"),
                   builder: (context, snapshot) {
                     if (snapshot.hasError) {
                       return Center(
@@ -130,7 +130,7 @@ class _SimpleWeatherScreenState extends State<SimpleWeatherScreen> {
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 25.w),
                                   child: TextField(
-                                    onChanged: (value){city=value; },
+                                    onSubmitted: (value){city=value; },
                                     controller: controller,
                                     decoration: InputDecoration(
                                         floatingLabelBehavior:

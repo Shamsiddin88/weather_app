@@ -9,7 +9,7 @@ class AppTheme {
       primaryColor: AppColors.black,
       appBarTheme: const AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: AppColors.transparent,
+              statusBarColor: AppColors.black,
               statusBarIconBrightness: Brightness.light)),
       textTheme: const TextTheme(
         displayLarge: TextStyle(fontSize: 57, color: AppColors.black,
@@ -65,8 +65,8 @@ class AppTheme {
       primaryColor: AppColors.white,
       appBarTheme: const AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: AppColors.transparent,
-              statusBarIconBrightness: Brightness.dark)),
+              statusBarColor: AppColors.white,
+              statusBarIconBrightness: Brightness.light)),
       textTheme: const TextTheme(
           displayLarge: TextStyle(fontSize: 57, color: AppColors.white,
           fontFamily: "Inter",
