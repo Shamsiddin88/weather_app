@@ -11,13 +11,10 @@ extension ParseToStringDate on int {
     return DateFormat.E().format(dateTime);
   }
 
-
-
   String getParsedOnlyDay() {
     DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(this * 1000);
     return DateFormat.EEEE().format(dateTime);
   }
-
 
   String getParsedHour() {
     DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(this * 1000);

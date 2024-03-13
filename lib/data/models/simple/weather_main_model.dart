@@ -1,5 +1,3 @@
-
-
 import 'package:weather_app/data/models/main/coord_model.dart';
 import 'package:weather_app/data/models/main/main_in_main.dart';
 import 'package:weather_app/data/models/main/sys_in_main.dart';

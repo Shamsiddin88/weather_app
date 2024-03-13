@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: theme,
             darkTheme: darktheme,
-            themeMode: ThemeMode.light,
+            themeMode: ThemeMode.dark,
             home: SimpleWeatherScreen(),
           );
         });

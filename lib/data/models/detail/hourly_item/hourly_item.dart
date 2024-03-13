@@ -1,4 +1,3 @@
-
 import 'package:weather_app/data/models/main/weather_model.dart';
 
 class HourlyItem {

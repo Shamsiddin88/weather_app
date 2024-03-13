@@ -1,4 +1,3 @@
-
 import 'package:weather_app/data/models/detail/daily_item/daily_item.dart';
 
 import 'hourly_item/hourly_item.dart';
@@ -12,11 +11,11 @@ class OneCallData {
 
   final int timezoneOffset;
 
-  final  List<HourlyItem> hourly;
+  final List<HourlyItem> hourly;
 
   final List<DailyItem> daily;
 
-   OneCallData({
+  OneCallData({
     required this.lat,
     required this.lon,
     required this.timezone,

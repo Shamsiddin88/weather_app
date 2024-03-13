@@ -1,12 +1,9 @@
-
-
-
 class DailyTemp {
   final double day;
 
   final double min;
 
-  final  double max;
+  final double max;
 
   final double night;
 

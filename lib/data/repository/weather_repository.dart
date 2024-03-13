@@ -1,5 +1,3 @@
-
-
 import 'package:weather_app/data/models/my_response.dart';
 import 'package:weather_app/data/network/api_provider.dart';
 

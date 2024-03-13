@@ -1,4 +1,3 @@
-
 import 'package:weather_app/data/models/detail/daily_item/daily_feels_like.dart';
 import 'package:weather_app/data/models/detail/daily_item/daily_temp.dart';
 import 'package:weather_app/data/models/main/weather_model.dart';

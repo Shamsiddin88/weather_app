@@ -12,54 +12,83 @@ class AppTheme {
               statusBarColor: AppColors.black,
               statusBarIconBrightness: Brightness.light)),
       textTheme: const TextTheme(
-        displayLarge: TextStyle(fontSize: 57, color: AppColors.black,
+        displayLarge: TextStyle(
+            fontSize: 57,
+            color: AppColors.black,
             fontFamily: "Inter",
             fontWeight: FontWeight.w400),
-        displayMedium:TextStyle(fontSize: 45, color: AppColors.black,
+        displayMedium: TextStyle(
+            fontSize: 45,
+            color: AppColors.black,
             fontFamily: "Inter",
             fontWeight: FontWeight.w400),
-        displaySmall: TextStyle(fontSize: 36, color: AppColors.black,
+        displaySmall: TextStyle(
+            fontSize: 36,
+            color: AppColors.black,
             fontFamily: "Inter",
             fontWeight: FontWeight.w400),
-        headlineLarge: TextStyle(fontSize: 32, color: AppColors.black,
+        headlineLarge: TextStyle(
+            fontSize: 32,
+            color: AppColors.black,
             fontFamily: "Inter",
             fontWeight: FontWeight.w400),
-        headlineMedium: TextStyle(fontSize: 28, color: AppColors.black,
+        headlineMedium: TextStyle(
+            fontSize: 28,
+            color: AppColors.black,
             fontFamily: "Inter",
             fontWeight: FontWeight.w400),
-        headlineSmall: TextStyle(fontSize: 24, color: AppColors.black,
+        headlineSmall: TextStyle(
+            fontSize: 24,
+            color: AppColors.black,
             fontFamily: "Inter",
             fontWeight: FontWeight.w400),
-        titleLarge: TextStyle(fontSize: 22, color: AppColors.black,
+        titleLarge: TextStyle(
+            fontSize: 22,
+            color: AppColors.black,
             fontFamily: "Inter",
             fontWeight: FontWeight.w500),
-        titleMedium: TextStyle(fontSize: 16, color: AppColors.black,
+        titleMedium: TextStyle(
+            fontSize: 16,
+            color: AppColors.black,
             fontFamily: "Inter",
             fontWeight: FontWeight.w500),
-        titleSmall: TextStyle(fontSize: 14, color: AppColors.black,
+        titleSmall: TextStyle(
+            fontSize: 14,
+            color: AppColors.black,
             fontFamily: "Inter",
             fontWeight: FontWeight.w500),
-        labelLarge: TextStyle(fontSize: 14, color: AppColors.black,
+        labelLarge: TextStyle(
+            fontSize: 14,
+            color: AppColors.black,
             fontFamily: "Inter",
             fontWeight: FontWeight.w500),
-        labelMedium: TextStyle(fontSize: 12, color: AppColors.black,
+        labelMedium: TextStyle(
+            fontSize: 12,
+            color: AppColors.black,
             fontFamily: "Inter",
             fontWeight: FontWeight.w500),
-        labelSmall: TextStyle(fontSize: 11, color: AppColors.black,
+        labelSmall: TextStyle(
+            fontSize: 11,
+            color: AppColors.black,
             fontFamily: "Inter",
             fontWeight: FontWeight.w500),
-        bodyLarge: TextStyle(fontSize: 16, color: AppColors.black,
+        bodyLarge: TextStyle(
+            fontSize: 16,
+            color: AppColors.black,
             fontFamily: "Inter",
             fontWeight: FontWeight.w500),
-        bodyMedium: TextStyle(fontSize: 14, color: AppColors.black,
+        bodyMedium: TextStyle(
+            fontSize: 14,
+            color: AppColors.black,
             fontFamily: "Inter",
             fontWeight: FontWeight.w500),
-        bodySmall: TextStyle(fontSize: 12, color: AppColors.black,
+        bodySmall: TextStyle(
+            fontSize: 12,
+            color: AppColors.black,
             fontFamily: "Inter",
             fontWeight: FontWeight.w500),
-
       ),
-      iconTheme:IconThemeData(color: AppColors.black) );
+      iconTheme: IconThemeData(color: AppColors.black));
   static final ThemeData darkTheme = ThemeData(
       scaffoldBackgroundColor: AppColors.c_0C0926,
       primaryColor: AppColors.white,
@@ -68,52 +97,81 @@ class AppTheme {
               statusBarColor: AppColors.white,
               statusBarIconBrightness: Brightness.light)),
       textTheme: const TextTheme(
-          displayLarge: TextStyle(fontSize: 57, color: AppColors.white,
-          fontFamily: "Inter",
-          fontWeight: FontWeight.w400),
-        displayMedium:TextStyle(fontSize: 45, color: AppColors.white,
+        displayLarge: TextStyle(
+            fontSize: 57,
+            color: AppColors.white,
             fontFamily: "Inter",
             fontWeight: FontWeight.w400),
-        displaySmall: TextStyle(fontSize: 36, color: AppColors.white,
+        displayMedium: TextStyle(
+            fontSize: 45,
+            color: AppColors.white,
             fontFamily: "Inter",
             fontWeight: FontWeight.w400),
-        headlineLarge: TextStyle(fontSize: 32, color: AppColors.white,
+        displaySmall: TextStyle(
+            fontSize: 36,
+            color: AppColors.white,
             fontFamily: "Inter",
             fontWeight: FontWeight.w400),
-        headlineMedium: TextStyle(fontSize: 28, color: AppColors.white,
+        headlineLarge: TextStyle(
+            fontSize: 32,
+            color: AppColors.white,
             fontFamily: "Inter",
             fontWeight: FontWeight.w400),
-        headlineSmall: TextStyle(fontSize: 24, color: AppColors.white,
+        headlineMedium: TextStyle(
+            fontSize: 28,
+            color: AppColors.white,
             fontFamily: "Inter",
             fontWeight: FontWeight.w400),
-        titleLarge: TextStyle(fontSize: 22, color: AppColors.white,
+        headlineSmall: TextStyle(
+            fontSize: 24,
+            color: AppColors.white,
+            fontFamily: "Inter",
+            fontWeight: FontWeight.w400),
+        titleLarge: TextStyle(
+            fontSize: 22,
+            color: AppColors.white,
             fontFamily: "Inter",
             fontWeight: FontWeight.w500),
-        titleMedium: TextStyle(fontSize: 16, color: AppColors.white,
+        titleMedium: TextStyle(
+            fontSize: 16,
+            color: AppColors.white,
             fontFamily: "Inter",
             fontWeight: FontWeight.w500),
-        titleSmall: TextStyle(fontSize: 14, color: AppColors.white,
+        titleSmall: TextStyle(
+            fontSize: 14,
+            color: AppColors.white,
             fontFamily: "Inter",
             fontWeight: FontWeight.w500),
-        labelLarge: TextStyle(fontSize: 14, color: AppColors.white,
+        labelLarge: TextStyle(
+            fontSize: 14,
+            color: AppColors.white,
             fontFamily: "Inter",
             fontWeight: FontWeight.w500),
-        labelMedium: TextStyle(fontSize: 12, color: AppColors.white,
+        labelMedium: TextStyle(
+            fontSize: 12,
+            color: AppColors.white,
             fontFamily: "Inter",
             fontWeight: FontWeight.w500),
-        labelSmall: TextStyle(fontSize: 11, color: AppColors.white,
+        labelSmall: TextStyle(
+            fontSize: 11,
+            color: AppColors.white,
             fontFamily: "Inter",
             fontWeight: FontWeight.w500),
-        bodyLarge: TextStyle(fontSize: 16, color: AppColors.white,
+        bodyLarge: TextStyle(
+            fontSize: 16,
+            color: AppColors.white,
             fontFamily: "Inter",
             fontWeight: FontWeight.w500),
-        bodyMedium: TextStyle(fontSize: 14, color: AppColors.white,
+        bodyMedium: TextStyle(
+            fontSize: 14,
+            color: AppColors.white,
             fontFamily: "Inter",
             fontWeight: FontWeight.w500),
-        bodySmall: TextStyle(fontSize: 12, color: AppColors.white,
+        bodySmall: TextStyle(
+            fontSize: 12,
+            color: AppColors.white,
             fontFamily: "Inter",
             fontWeight: FontWeight.w500),
-
       ),
-      iconTheme:IconThemeData(color: AppColors.black) );
+      iconTheme: IconThemeData(color: AppColors.black));
 }

@@ -28,7 +28,6 @@ class AppTextStyle {
     fontWeight: FontWeight.w500,
     fontSize: 16.w,
     color: AppColors.white,
-
   );
 
   static TextStyle interSemiBold = TextStyle(
@@ -36,7 +35,6 @@ class AppTextStyle {
     fontWeight: FontWeight.w600,
     fontSize: 16.w,
     color: AppColors.white,
-
   );
 
   static TextStyle interBold = TextStyle(
@@ -44,7 +42,6 @@ class AppTextStyle {
     fontWeight: FontWeight.w700,
     fontSize: 16.w,
     color: AppColors.white,
-
   );
 
   static TextStyle interBlack = TextStyle(
@@ -52,6 +49,5 @@ class AppTextStyle {
     fontWeight: FontWeight.w800,
     fontSize: 16.w,
     color: AppColors.white,
-
   );
 }
